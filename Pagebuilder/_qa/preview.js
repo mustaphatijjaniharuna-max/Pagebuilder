@@ -1,0 +1,12 @@
+const fs = require("fs");
+const path = require("path");
+const vm = require("vm");
+const src = fs.readFileSync(path.join("assets", "js", "templates.js"), "utf8");
+const sandbox = { window: {}, console, Blob: function () { }, URL: {}, document: {}, setTimeout };
+sandbox.globalThis = sandbox;
+vm.createContext(sandbox);
+vm.runInContext(src, sandbox, { filename: "templates.js" });
+const T = sandbox.window.Templates;
+fs.writeFileSync(path.join("_qa", "preview-realestate.html"), T.render(T.sampleSite("realestate")));
+fs.writeFileSync(path.join("_qa", "preview-tutoring.html"), T.render(T.sampleSite("tutoring")));
+console.log("wrote previews");

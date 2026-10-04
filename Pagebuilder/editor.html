@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Website Editor — PageBuilder</title>
+<meta name="description" content="Build your business website with live preview. Add your details, logo, products, prices, and WhatsApp number — then download your finished site.">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Editor-specific tweaks */
+  .editor-page .site-header { position: static; }
+  .preview-empty { color: #6f6b85; text-align: center; padding: 60px 24px; font-size: .95rem; }
+</style>
+</head>
+<body class="editor-page">
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">P</span>
+      <span>PageBuilder</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="templates.html">Templates</a>
+      <a href="done-for-you.html">Done for you</a>
+      <a class="btn btn-primary btn-sm nav-cta" href="editor.html">Create your website</a>
+    </nav>
+  </div>
+</header>
+
+<div class="editor-shell">
+
+  <!-- =============== LEFT: FORM PANEL =============== -->
+  <aside class="editor-panel">
+    <div class="editor-panel-head">
+      <h2>Your website</h2>
+      <span class="chip" id="draftStatus">Draft</span>
+    </div>
+
+    <div class="editor-body">
+
+      <div class="notice" id="quotaWarning" style="display:none">
+        Your logo is too large to save locally. Everything else will still work — try a smaller image.
+      </div>
+
+      <div class="tabs" role="tablist">
+        <button class="active" data-tab="template">Template</button>
+        <button data-tab="business">Business</button>
+        <button data-tab="items">Products</button>
+        <button data-tab="brand">Branding</button>
+        <button data-tab="contact">Contact</button>
+      </div>
+
+      <!-- ---------- Template ---------- -->
+      <div class="tab-panel active" data-panel="template">
+        <div class="field">
+          <label>Choose a template <span class="hint">— switch any time</span></label>
+          <div class="grid" style="gap:10px" id="templatePicker">
+            <!-- filled by JS -->
+          </div>
+        </div>
+        <p class="muted" style="font-size:.85rem">Changing the template keeps all of your details. Only the layout changes.</p>
+      </div>
+
+      <!-- ---------- Business ---------- -->
+      <div class="tab-panel" data-panel="business">
+        <div class="field">
+          <label for="fName">Business name</label>
+          <input class="input" id="fName" type="text" placeholder="e.g. Mama Rosa Kitchen" autocomplete="organization">
+        </div>
+        <div class="field">
+          <label for="fTagline">Tagline <span class="hint">— the headline customers read first</span></label>
+          <input class="input" id="fTagline" type="text" placeholder="e.g. Home-style cooking, served fresh daily.">
+        </div>
+        <div class="field">
+          <label for="fDescription">Short description</label>
+          <textarea class="textarea" id="fDescription" placeholder="Tell customers what you do and why they should visit."></textarea>
+        </div>
+        <div class="field">
+          <label for="fCategory">Business type <span class="hint">— shown as a label on your site</span></label>
+          <input class="input" id="fCategory" type="text" placeholder="e.g. Restaurant">
+        </div>
+        <div class="field">
+          <label for="fHours">Opening hours</label>
+          <input class="input" id="fHours" type="text" placeholder="e.g. Mon–Sat 9am–7pm">
+        </div>
+      </div>
+
+      <!-- ---------- Products / services ---------- -->
+      <div class="tab-panel" data-panel="items">
+        <p class="muted" style="font-size:.88rem">Add the products or services you want customers to see. Leave the price blank if you'd rather say "ask us".</p>
+        <div id="itemList"></div>
+        <button class="btn btn-ghost btn-sm btn-block mt-2" id="addItem">+ Add a product or service</button>
+        <p class="muted mt-2" style="font-size:.8rem">Tip: short names and one-line descriptions look best.</p>
+      </div>
+
+      <!-- ---------- Branding ---------- -->
+      <div class="tab-panel" data-panel="brand">
+        <div class="field">
+          <label>Logo</label>
+          <div class="logo-drop" id="logoDrop">
+            <strong>Click to upload a logo</strong>
+            <span>PNG or JPG — a square image works best</span>
+          </div>
+          <input type="file" id="logoInput" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml" hidden>
+          <div class="logo-preview" id="logoPreview" style="display:none">
+            <img id="logoImg" alt="Your logo">
+            <button class="btn btn-ghost btn-sm" id="removeLogo">Remove logo</button>
+          </div>
+          <p class="muted mt-2" style="font-size:.8rem">No logo yet? We'll show your initials in a coloured square instead.</p>
+        </div>
+
+        <div class="field">
+          <label for="fPrimary">Main brand colour</label>
+          <div class="color-row">
+            <input type="color" id="fPrimary" value="#5346d1">
+            <div class="swatches" id="primarySwatches"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="fAccent">Accent colour</label>
+          <div class="color-row">
+            <input type="color" id="fAccent" value="#b8f14b">
+            <div class="swatches" id="accentSwatches"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---------- Contact ---------- -->
+      <div class="tab-panel" data-panel="contact">
+        <div class="field">
+          <label for="fWhatsapp">WhatsApp number <span class="hint">— adds a chat button</span></label>
+          <input class="input" id="fWhatsapp" type="tel" placeholder="e.g. 15551234567" inputmode="tel">
+          <p class="muted" style="font-size:.8rem;margin:.35rem 0 0">Include the country code, digits only. This powers the "Chat on WhatsApp" button.</p>
+        </div>
+        <div class="field">
+          <label for="fPhone">Phone number</label>
+          <input class="input" id="fPhone" type="tel" placeholder="e.g. +1 555 123 4567">
+        </div>
+        <div class="field">
+          <label for="fEmail">Email address</label>
+          <input class="input" id="fEmail" type="email" placeholder="e.g. hello@yourbusiness.com">
+        </div>
+        <div class="field">
+          <label for="fAddress">Address</label>
+          <input class="input" id="fAddress" type="text" placeholder="e.g. 12 Market Street, Springfield">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="editor-foot">
+      <button class="btn btn-primary" id="btnDownload">Download website</button>
+      <button class="btn btn-ghost" id="btnReset">Start over</button>
+    </div>
+  </aside>
+
+  <!-- =============== RIGHT: LIVE PREVIEW =============== -->
+  <section class="editor-preview">
+    <div class="preview-bar">
+      <strong style="font-size:.88rem">Live preview</strong>
+      <div class="seg" role="group" aria-label="Preview size">
+        <button class="active" data-size="desktop">Desktop</button>
+        <button data-size="mobile">Mobile</button>
+      </div>
+      <span class="muted" style="font-size:.8rem;margin-left:auto" id="previewHint">Updates as you type</span>
+    </div>
+    <div class="preview-stage">
+      <div class="preview-device" id="previewDevice">
+        <iframe id="previewFrame" title="Live preview of your website"></iframe>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Download modal -->
+<div class="modal-backdrop" id="downloadModal">
+  <div class="modal">
+    <h3>Your website is ready</h3>
+    <p class="muted" id="downloadSummary"></p>
+    <div class="notice success">Downloaded as <code id="downloadFilename">index.html</code> — a single file containing everything.</div>
+    <h4 style="margin-bottom:.4rem">How to put it online</h4>
+    <ul class="feature-list">
+      <li><span class="fi">1</span><span><strong>GitHub Pages</strong> — create a repo, upload <code>index.html</code>, enable Pages in settings.</span></li>
+      <li><span class="fi">2</span><span><strong>Netlify Drop</strong> — drag the file onto their dashboard and it goes live instantly.</span></li>
+      <li><span class="fi">3</span><span><strong>Cloudflare Pages</strong> — connect a folder or upload directly.</span></li>
+    </ul>
+    <p class="muted" style="font-size:.85rem">Don't want to do this yourself? <a href="done-for-you.html">We can publish it for you.</a></p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="closeDownload">Close</button>
+      <button class="btn btn-primary" id="downloadAgain">Download again</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/store.js"></script>
+<script src="assets/js/templates.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/editor.js"></script>
+</body>
+</html>

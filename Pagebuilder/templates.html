@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Template Gallery — PageBuilder</title>
+<meta name="description" content="Browse PageBuilder website templates for restaurants, fashion stores, and general local businesses. Pick one and customise it in minutes.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">P</span>
+      <span>PageBuilder</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="templates.html">Templates</a>
+      <a href="done-for-you.html">Done for you</a>
+      <a class="btn btn-primary btn-sm nav-cta" href="editor.html">Create your website</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Template gallery</span>
+        <h2>Pick the layout that fits your business</h2>
+        <p>Every template is fully responsive and free to use. Choose one, then make it yours in the editor.</p>
+      </div>
+
+      <div class="grid grid-3" id="gallery">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="container">
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="step-num">→</div>
+          <h3>Not sure which one?</h3>
+          <p class="muted mb-0">You can switch templates at any time inside the editor without losing the details you've typed.</p>
+        </div>
+        <div class="card">
+          <div class="step-num">✎</div>
+          <h3>Make it yours</h3>
+          <p class="muted mb-0">Change the colours, add your logo, and rewrite every piece of text until it sounds like you.</p>
+        </div>
+        <div class="card">
+          <div class="step-num">★</div>
+          <h3>Want us to do it?</h3>
+          <p class="muted mb-0">Send us your favourite template and your details, and we'll build it for you. <a href="done-for-you.html">Learn more</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="split-cta">
+        <div>
+          <h2>Ready to start?</h2>
+          <p>Pick a template above, or jump straight into the editor and choose there.</p>
+        </div>
+        <a class="btn btn-accent btn-lg" href="editor.html">Open the editor</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand"><span class="brand-mark">P</span><span>PageBuilder</span></div>
+        <p>A mini website builder for local businesses. Build it yourself for free, or let us build it for you.</p>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <a href="templates.html">Templates</a>
+        <a href="editor.html">Website editor</a>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="done-for-you.html">Done-for-you builds</a>
+        <a href="done-for-you.html#faq">FAQ</a>
+        <a href="done-for-you.html#request">Request a website</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year>2026</span> PageBuilder. All rights reserved.</span>
+      <span>Built with plain HTML, CSS, and JavaScript.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/store.js"></script>
+<script src="assets/js/templates.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var gallery = document.getElementById("gallery");
+
+  gallery.innerHTML = Templates.list.map(function (tpl, index) {
+    return '' +
+      '<article class="tpl-card" data-reveal>' +
+        '<div class="tpl-thumb"><iframe data-tpl="' + tpl.id + '" title="' + tpl.name + ' template preview" loading="lazy"></iframe></div>' +
+        '<div class="tpl-body">' +
+          '<div class="chip-row">' +
+            '<span class="chip">' + tpl.category + '</span>' +
+            '<span class="chip" style="background:#f1f0f7;color:#4a465e">Free</span>' +
+          '</div>' +
+          '<h3>' + tpl.name + '</h3>' +
+          '<p class="tpl-meta">' + tpl.tagline + '<br><strong style="color:#4a465e">Best for:</strong> ' + tpl.bestFor + '</p>' +
+          '<div class="tpl-actions">' +
+            '<a class="btn btn-primary btn-sm" href="editor.html?template=' + tpl.id + '">Use this template</a>' +
+            '<button class="btn btn-ghost btn-sm" data-preview="' + tpl.id + '">Full preview</button>' +
+          '</div>' +
+        '</div>' +
+      '</article>';
+  }).join("");
+
+  // Render thumbnails.
+  var frames = gallery.querySelectorAll("iframe[data-tpl]");
+  for (var i = 0; i < frames.length; i++) {
+    frames[i].srcdoc = Templates.render(Templates.sampleSite(frames[i].getAttribute("data-tpl")));
+  }
+
+  /* --- Full-screen preview modal --- */
+  var modal = document.createElement("div");
+  modal.className = "modal-backdrop";
+  modal.innerHTML = '' +
+    '<div class="modal" style="width:min(1000px,100%);padding:18px">' +
+      '<div class="flex-between" style="margin-bottom:12px">' +
+        '<h3 style="margin:0" id="pvTitle">Preview</h3>' +
+        '<div style="display:flex;gap:.5rem">' +
+          '<a class="btn btn-primary btn-sm" id="pvUse" href="editor.html">Use this template</a>' +
+          '<button class="btn btn-ghost btn-sm" id="pvClose">Close</button>' +
+        '</div>' +
+      '</div>' +
+      '<iframe id="pvFrame" title="Template preview" style="width:100%;height:70vh;border:1px solid var(--line);border-radius:12px;background:#fff"></iframe>' +
+    '</div>';
+  document.body.appendChild(modal);
+
+  var pvFrame = document.getElementById("pvFrame");
+  var pvTitle = document.getElementById("pvTitle");
+  var pvUse = document.getElementById("pvUse");
+
+  function openPreview(id) {
+    var tpl = Templates.get(id);
+    pvTitle.textContent = tpl.name + " — " + tpl.category;
+    pvFrame.srcdoc = Templates.render(Templates.sampleSite(id));
+    pvUse.setAttribute("href", "editor.html?template=" + id);
+    modal.classList.add("open");
+  }
+
+  document.getElementById("pvClose").addEventListener("click", function () {
+    modal.classList.remove("open");
+    pvFrame.srcdoc = "";
+  });
+
+  gallery.addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-preview]");
+    if (btn) openPreview(btn.getAttribute("data-preview"));
+  });
+})();
+</script>
+</body>
+</html>

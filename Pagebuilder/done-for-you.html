@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Done For You — We build your website | PageBuilder</title>
+<meta name="description" content="Don't want to build it yourself? PageBuilder can design, customise, and publish your business website for a one-time setup fee.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">P</span>
+      <span>PageBuilder</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="templates.html">Templates</a>
+      <a href="done-for-you.html">Done for you</a>
+      <a class="btn btn-primary btn-sm nav-cta" href="editor.html">Create your website</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="container">
+      <div class="section-head" style="margin-bottom:36px">
+        <span class="eyebrow">Done for you</span>
+        <h2>You run the business. We'll build the website.</h2>
+        <p class="lead" style="max-width:60ch;margin-inline:auto">Send us your details and we'll design, customise, and publish a professional website for you — usually within a few days.</p>
+        <div class="hero-actions" style="justify-content:center">
+          <a class="btn btn-primary btn-lg" href="#request">Request a website</a>
+          <a class="btn btn-ghost btn-lg" href="#samples">See sample designs</a>
+        </div>
+      </div>
+
+      <div class="grid grid-3" data-reveal>
+        <div class="card">
+          <div class="step-num">1</div>
+          <h3>You tell us about your business</h3>
+          <p class="muted mb-0">Name, what you sell, your prices, your contact details, and any photos or logo you have.</p>
+        </div>
+        <div class="card">
+          <div class="step-num">2</div>
+          <h3>We design and build it</h3>
+          <p class="muted mb-0">We pick the right template, lay out your content, match your colours, and make it look sharp on phones.</p>
+        </div>
+        <div class="card">
+          <div class="step-num">3</div>
+          <h3>We publish it for you</h3>
+          <p class="muted mb-0">You get a live link you can share on WhatsApp, social media, and your business cards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHAT'S INCLUDED ===================== -->
+  <section class="section-alt">
+    <div class="container">
+      <div class="grid grid-2" style="gap:34px">
+        <div class="card" style="padding:32px" data-reveal>
+          <span class="eyebrow">Included</span>
+          <h3>What the setup fee covers</h3>
+          <ul class="check-list">
+            <li>Website design based on our templates</li>
+            <li>Customisation with your colours and logo</li>
+            <li>Up to 10 products or services listed with prices</li>
+            <li>WhatsApp, phone, email, and map links</li>
+            <li>Mobile and desktop testing</li>
+            <li>Deployment and publishing</li>
+            <li>Basic setup guidance for you</li>
+            <li>One round of revisions</li>
+          </ul>
+        </div>
+
+        <div class="card" style="padding:32px" data-reveal>
+          <span class="eyebrow">Optional</span>
+          <h3>Add-ons and maintenance</h3>
+          <ul class="check-list">
+            <li>Extra pages (about, gallery, menu, booking)</li>
+            <li>Custom domain setup</li>
+            <li>Content updates after launch</li>
+            <li>Ongoing maintenance and small changes</li>
+            <li>Extra product photography guidance</li>
+            <li>Help claiming your Google Business listing</li>
+          </ul>
+          <div class="notice mt-2" style="margin-bottom:0">
+            Pricing depends on how much you need. Send a request and we'll quote you honestly — no surprises.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SAMPLES ===================== -->
+  <section id="samples">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Sample designs</span>
+        <h2>Examples of what we can build for you</h2>
+        <p>These are the starting points we work from. Every one gets customised to your business.</p>
+      </div>
+
+      <div class="grid grid-3" id="sampleGrid">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== REQUEST FORM ===================== -->
+  <section class="section-alt" id="request">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Get started</span>
+        <h2>Request your website</h2>
+        <p>Fill this in and we'll send your request straight through to us on WhatsApp. No payment needed yet.</p>
+      </div>
+
+      <div class="container-narrow" style="padding:0">
+        <form class="card" id="requestForm" style="padding:30px" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="rName">Your name <span class="hint">*</span></label>
+              <input class="input" id="rName" name="name" type="text" required placeholder="e.g. Aisha Bello">
+            </div>
+            <div class="field">
+              <label for="rBusiness">Business name <span class="hint">*</span></label>
+              <input class="input" id="rBusiness" name="business" type="text" required placeholder="e.g. Mama Rosa Kitchen">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="rType">What kind of business?</label>
+              <select class="select" id="rType" name="type">
+                <option>Restaurant or food</option>
+                <option>Clothing or fashion</option>
+                <option>Barber or salon</option>
+                <option>Phone or electronics</option>
+                <option>Freelancer or service provider</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="rTemplate">Preferred style</label>
+              <select class="select" id="rTemplate" name="template">
+                <option value="restaurant">Bistro — menu focused</option>
+                <option value="fashion">Atelier — product focused</option>
+                <option value="general" selected>Cornerstone — services focused</option>
+                <option value="wellness">Serenity — appointments and treatments</option>
+                <option value="trades">Ironline — trades and call-outs</option>
+                <option value="fitness">Pulse — classes and memberships</option>
+                <option value="realestate">Keystone — property listings and viewings</option>
+                <option value="tutoring">Beacon — subjects and lessons</option>
+                <option value="unsure">I'm not sure, you choose</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="rContact">Your WhatsApp number or email <span class="hint">*</span></label>
+            <input class="input" id="rContact" name="contact" type="text" required placeholder="e.g. 15551234567 or you@example.com">
+          </div>
+
+          <div class="field">
+            <label for="rDetails">Tell us about your business</label>
+            <textarea class="textarea" id="rDetails" name="details" placeholder="What do you sell? What should customers know? Anything you specifically want on the site?"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="rBudget">Roughly what's your budget?</label>
+            <select class="select" id="rBudget" name="budget">
+              <option>Not sure yet — please advise</option>
+              <option>Small budget</option>
+              <option>Moderate budget</option>
+              <option>Happy to discuss</option>
+            </select>
+          </div>
+
+          <div class="notice" id="formNotice" style="display:none"></div>
+
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Send my request</button>
+          <p class="muted text-center mt-2" style="font-size:.82rem">
+            This opens WhatsApp with your details filled in. Nothing is sent until you press send there.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section id="faq">
+    <div class="container-narrow">
+      <div class="section-head">
+        <span class="eyebrow">FAQ</span>
+        <h2>Questions people usually ask</h2>
+      </div>
+
+      <div class="stack-sm">
+        <div class="card">
+          <h3>How long does it take?</h3>
+          <p class="muted mb-0">Most simple business websites are ready within a few days of us receiving your details. Larger sites with extra pages take longer.</p>
+        </div>
+        <div class="card">
+          <h3>Do I own the website?</h3>
+          <p class="muted mb-0">Yes. You get the finished files and the published site. There's no lock-in and no monthly fee unless you choose ongoing maintenance.</p>
+        </div>
+        <div class="card">
+          <h3>Where will my website be hosted?</h3>
+          <p class="muted mb-0">On free static hosting such as GitHub Pages, Netlify, or Cloudflare Pages. These are reliable and cost nothing for a site like this. If you want a custom domain like <code>www.yourbusiness.com</code>, we can set that up as an add-on.</p>
+        </div>
+        <div class="card">
+          <h3>Can I update it myself afterwards?</h3>
+          <p class="muted mb-0">Yes. Because you get the same files our builder produces, you can open the PageBuilder editor any time, change your details, and download an updated version.</p>
+        </div>
+        <div class="card">
+          <h3>What if I don't have a logo or photos?</h3>
+          <p class="muted mb-0">No problem. We'll use your business initials in a coloured block and design the layout so it still looks professional without photography.</p>
+        </div>
+        <div class="card">
+          <h3>Can you take online payments?</h3>
+          <p class="muted mb-0">Not yet. This first version focuses on getting you found and contacted — a WhatsApp button, phone, email, and map link. Online payments are on our roadmap.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="section-tight">
+    <div class="container">
+      <div class="split-cta">
+        <div>
+          <h2>Rather do it yourself?</h2>
+          <p>Our builder is free to use. You can always start there and ask us for help later.</p>
+        </div>
+        <a class="btn btn-accent btn-lg" href="editor.html">Open the editor</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand"><span class="brand-mark">P</span><span>PageBuilder</span></div>
+        <p>A mini website builder for local businesses. Build it yourself for free, or let us build it for you.</p>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <a href="templates.html">Templates</a>
+        <a href="editor.html">Website editor</a>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="done-for-you.html">Done-for-you builds</a>
+        <a href="done-for-you.html#faq">FAQ</a>
+        <a href="done-for-you.html#request">Request a website</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year>2026</span> PageBuilder. All rights reserved.</span>
+      <span>Built with plain HTML, CSS, and JavaScript.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Confirmation modal -->
+<div class="modal-backdrop" id="confirmModal">
+  <div class="modal">
+    <h3>Request ready to send</h3>
+    <p class="muted">We've opened WhatsApp with your details filled in. Press send there and we'll get back to you.</p>
+    <div class="notice" id="confirmSummary"></div>
+    <p class="muted" style="font-size:.85rem">If WhatsApp didn't open, you can copy your details below and send them to us directly.</p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="copyDetails">Copy details</button>
+      <button class="btn btn-primary" id="closeConfirm">Done</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/store.js"></script>
+<script src="assets/js/templates.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- Business WhatsApp number ----------
+     Replace this with the real number that should receive done-for-you
+     requests. Digits only, including country code. */
+  var BUSINESS_WHATSAPP = "15551234567";
+
+  var $ = function (sel) { return document.querySelector(sel); };
+
+  function escapeHtml(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  /* ---------- Sample design cards ---------- */
+  var grid = $("#sampleGrid");
+  grid.innerHTML = Templates.list.map(function (tpl) {
+    return '' +
+      '<article class="tpl-card" data-reveal>' +
+        '<div class="tpl-thumb"><iframe data-tpl="' + tpl.id + '" title="' + tpl.name + ' sample" loading="lazy"></iframe></div>' +
+        '<div class="tpl-body">' +
+          '<div class="chip-row"><span class="chip">' + tpl.category + "</span></div>" +
+          "<h3>" + tpl.name + "</h3>" +
+          '<p class="tpl-meta">' + tpl.bestFor + "</p>" +
+          '<a class="btn btn-ghost btn-sm" href="#request">Request this style</a>' +
+        "</div>" +
+      "</article>";
+  }).join("");
+
+  var frames = grid.querySelectorAll("iframe[data-tpl]");
+  for (var i = 0; i < frames.length; i++) {
+    frames[i].srcdoc = Templates.render(Templates.sampleSite(frames[i].getAttribute("data-tpl")));
+  }
+
+  /* ---------- Request form ---------- */
+  var form = $("#requestForm");
+  var notice = $("#formNotice");
+  var lastMessage = "";
+
+  function showNotice(message, kind) {
+    notice.className = "notice" + (kind ? " " + kind : "");
+    notice.textContent = message;
+    notice.style.display = "block";
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    var name = $("#rName").value.trim();
+    var business = $("#rBusiness").value.trim();
+    var contact = $("#rContact").value.trim();
+
+    if (!name || !business || !contact) {
+      showNotice("Please fill in your name, business name, and contact details.", "warn");
+      return;
+    }
+
+    var type = $("#rType").value;
+    var template = $("#rTemplate").value;
+    var details = $("#rDetails").value.trim();
+    var budget = $("#rBudget").value;
+
+    var lines = [
+      "New website request (done for you)",
+      "",
+      "Name: " + name,
+      "Business: " + business,
+      "Business type: " + type,
+      "Preferred style: " + template,
+      "Contact: " + contact,
+      "Budget: " + budget,
+      details ? "Details: " + details : ""
+    ].filter(Boolean);
+
+    lastMessage = lines.join("\n");
+
+    var url = "https://wa.me/" + BUSINESS_WHATSAPP + "?text=" + encodeURIComponent(lastMessage);
+
+    $("#confirmSummary").innerHTML = lines.slice(2).map(function (line) {
+      return escapeHtml(line);
+    }).join("<br>");
+
+    window.open(url, "_blank", "noopener");
+    UI.openModal("confirmModal");
+    showNotice("Your request is on its way. We'll reply as soon as we can.", "success");
+  });
+
+  $("#closeConfirm").addEventListener("click", function () { UI.closeModal("confirmModal"); });
+
+  $("#copyDetails").addEventListener("click", function () {
+    if (!lastMessage) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(lastMessage).then(function () {
+        UI.toast("Details copied", "success");
+      }, function () {
+        UI.toast("Couldn't copy — please select the text manually.", "error");
+      });
+    } else {
+      UI.toast("Copying isn't supported in this browser.", "error");
+    }
+  });
+})();
+</script>
+</body>
+</html>
